@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Panorama - Minhas Mídias</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<div class="versao-app"><span>Versão do sistema: <span th:text="${appVersion}"></span></span></div>
+
+<body class="container py-5">
+
+    <h1 class="mb-4">📚 Panorama - Lista Minhas Mídias</h1>
+    <a class="btn btn-primary mb-4" href="/nova">+ Adicionar nova mídia</a>
+
+    <!-- Divisão por categoria -->
+    <div>
+        <!-- Quadrinhos/Mangás -->
+        <button type="button" class="collapsible">Quadrinhos / Mangás</button>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-4 mb-4" th:each="midia : ${midias}" th:if="${midia.tipo} == 'Quadrinho/Mangá' and !${midia.visto}">
+                    <div class="card h-100 shadow-sm">
+                        <img th:src="@{${midia.capaPath}}" class="card-img-top" th:alt="${midia.titulo}">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${midia.titulo}">Título</h5>
+                            <p class="card-text" th:text="${midia.descricao}">Descrição</p>
+							<a th:href="@{'/remover/' + ${midia.id}}" class="btn btn-danger btn-sm"
+							   onclick="return confirm('Tem certeza que deseja remover esta mídia?');">Remover</a>
+							<a th:href="@{'/editar/' + ${midia.id}}" class="btn btn-warning btn-sm me-2">Editar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Já Vistos -->
+            <button type="button" class="sub-collapsible">✅ Já Vistos</button>
+            <div class="sub-content">
+                <div class="row">
+                    <div class="col-md-4 mb-4" th:each="midia : ${midias}" th:if="${midia.tipo} == 'Quadrinho/Mangá' and ${midia.visto}">
+                        <div class="card h-100 shadow-sm">
+                            <img th:src="@{${midia.capaPath}}" class="card-img-top" th:alt="${midia.titulo}">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${midia.titulo}">Título</h5>
+                                <p class="card-text" th:text="${midia.descricao}">Descrição</p>
+								<a th:href="@{'/remover/' + ${midia.id}}" class="btn btn-danger btn-sm"
+								   onclick="return confirm('Tem certeza que deseja remover esta mídia?');">Remover</a>
+								<a th:href="@{'/editar/' + ${midia.id}}" class="btn btn-warning btn-sm me-2">Editar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animações -->
+        <button type="button" class="collapsible">Animações</button>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-4 mb-4" th:each="midia : ${midias}" th:if="${midia.tipo} == 'Animação' and !${midia.visto}">
+                    <div class="card h-100 shadow-sm">
+                        <img th:src="@{${midia.capaPath}}" class="card-img-top" th:alt="${midia.titulo}">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${midia.titulo}">Título</h5>
+                            <p class="card-text" th:text="${midia.descricao}">Descrição</p>
+							<a th:href="@{'/remover/' + ${midia.id}}" class="btn btn-danger btn-sm"
+							   onclick="return confirm('Tem certeza que deseja remover esta mídia?');">Remover</a>
+							<a th:href="@{'/editar/' + ${midia.id}}" class="btn btn-warning btn-sm me-2">Editar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="sub-collapsible">✅ Já Vistos</button>
+            <div class="sub-content">
+                <div class="row">
+                    <div class="col-md-4 mb-4" th:each="midia : ${midias}" th:if="${midia.tipo} == 'Animação' and ${midia.visto}">
+                        <div class="card h-100 shadow-sm">
+                            <img th:src="@{${midia.capaPath}}" class="card-img-top" th:alt="${midia.titulo}">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${midia.titulo}">Título</h5>
+                                <p class="card-text" th:text="${midia.descricao}">Descrição</p>
+								<a th:href="@{'/remover/' + ${midia.id}}" class="btn btn-danger btn-sm"
+								   onclick="return confirm('Tem certeza que deseja remover esta mídia?');">Remover</a>
+								<a th:href="@{'/editar/' + ${midia.id}}" class="btn btn-warning btn-sm me-2">Editar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filmes -->
+        <button type="button" class="collapsible">Filmes</button>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-4 mb-4" th:each="midia : ${midias}" th:if="${midia.tipo} == 'Filme' and !${midia.visto}">
+                    <div class="card h-100 shadow-sm">
+                        <img th:src="@{${midia.capaPath}}" class="card-img-top" th:alt="${midia.titulo}">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${midia.titulo}">Título</h5>
+                            <p class="card-text" th:text="${midia.descricao}">Descrição</p>
+							<a th:href="@{'/remover/' + ${midia.id}}" class="btn btn-danger btn-sm"
+							   onclick="return confirm('Tem certeza que deseja remover esta mídia?');">Remover</a>
+							<a th:href="@{'/editar/' + ${midia.id}}" class="btn btn-warning btn-sm me-2">Editar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="sub-collapsible">✅ Já Vistos</button>
+            <div class="sub-content">
+                <div class="row">
+                    <div class="col-md-4 mb-4" th:each="midia : ${midias}" th:if="${midia.tipo} == 'Filme' and ${midia.visto}">
+                        <div class="card h-100 shadow-sm">
+                            <img th:src="@{${midia.capaPath}}" class="card-img-top" th:alt="${midia.titulo}">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${midia.titulo}">Título</h5>
+                                <p class="card-text" th:text="${midia.descricao}">Descrição</p>
+								<a th:href="@{'/remover/' + ${midia.id}}" class="btn btn-danger btn-sm"
+								   onclick="return confirm('Tem certeza que deseja remover esta mídia?');">Remover</a>
+								<a th:href="@{'/editar/' + ${midia.id}}" class="btn btn-warning btn-sm me-2">Editar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	<script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>
