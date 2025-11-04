@@ -33,6 +33,7 @@
             <label class="form-label">Tipo da Mídia</label>
             <select th:field="*{tipo}" class="form-select" required>
                 <option value="Quadrinho/Mangá" th:selected="${midia.tipo == 'Quadrinho/Mangá'}">Quadrinho/Mangá</option>
+				<option value="Disco" th:selected="${midia.tipo == 'Disco'}">Disco</option>
                 <option value="Animação" th:selected="${midia.tipo == 'Animação'}">Animação</option>
                 <option value="Filme" th:selected="${midia.tipo == 'Filme'}">Filme</option>
             </select>

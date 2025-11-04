@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados da Busca</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<h1 class="mb-4">📚 Panorama - Lista Minhas Mídias</h1>
+    <h2>Resultados para: "<span th:text="${termoBusca}"></span>"</h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px;">
+        <div th:each="midia : ${midias}" class="card">
+            <img th:if="${midia.capaPath != null}" 
+                 th:src="@{${midia.capaPath}}" 
+                 class="card-img-top" alt="Capa" />
+
+            <div class="card-body">
+                <h5 class="card-title" th:text="${midia.titulo}"></h5>
+                <p class="card-text" th:text="${midia.descricao}"></p>
+            </div>
+        </div>
+    </div>
+
+    <a href="/" class="collapsible" style="width: auto; margin-top: 20px; display: inline-block; text-decoration: none; text-align: center;">
+        Voltar
+    </a>
+
+    <div class="versao-app" th:text="'Versão: ' + ${appVersion}"></div>
+</body>
+</html>
