@@ -38,6 +38,7 @@ public class MidiaController {
     public String listar(Model model) {
         model.addAttribute("midias", midiaRepository.findAll());
         model.addAttribute("appVersion", appVersion);
+        model.addAttribute("isSearch", false);
         return "index";
     }
 
@@ -143,6 +144,18 @@ public class MidiaController {
         return "redirect:/";
     }
 
+    //Endpoint para buscar na página html
+    
+    @GetMapping("/buscar")
+    public String buscar(@RequestParam("q") String termo, Model model) {
+        var resultados = midiaRepository.findByTituloContainingIgnoreCase(termo);
+
+        model.addAttribute("midias", resultados);
+        model.addAttribute("appVersion", appVersion);
+        model.addAttribute("termoBusca", termo);
+
+        return "busca"; // nova página de resultados
+    }
     
 	/*
 	 * @GetMapping("/remover/{id}") public String remover(@PathVariable Long id) {

@@ -8,4 +8,6 @@ import com.minhas.midias.entidade.Midia;
 
 public interface MidiaRepository extends JpaRepository<Midia, Long> {
     List<Midia> findByVisto(boolean visto);
+    List<Midia> findByTituloContainingIgnoreCase(String titulo);
+    
 }
