@@ -173,6 +173,43 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Filmes -->
+        <button type="button" class="collapsible">Jogos</button>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-4 mb-4" th:each="midia : ${midias}" th:if="${midia.tipo} == 'Jogos' and !${midia.visto}">
+                    <div class="card h-100 shadow-sm">
+                        <img th:src="@{${midia.capaPath}}" class="card-img-top" th:alt="${midia.titulo}">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${midia.titulo}">Título</h5>
+                            <p class="card-text" th:text="${midia.descricao}">Descrição</p>
+							<a th:href="@{'/remover/' + ${midia.id}}" class="btn btn-danger btn-sm"
+							   onclick="return confirm('Tem certeza que deseja remover esta mídia?');">Remover</a>
+							<a th:href="@{'/editar/' + ${midia.id}}" class="btn btn-warning btn-sm me-2">Editar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="sub-collapsible">✅ Já Vistos</button>
+            <div class="sub-content">
+                <div class="row">
+                    <div class="col-md-4 mb-4" th:each="midia : ${midias}" th:if="${midia.tipo} == 'Jogos' and ${midia.visto}">
+                        <div class="card h-100 shadow-sm">
+                            <img th:src="@{${midia.capaPath}}" class="card-img-top" th:alt="${midia.titulo}">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${midia.titulo}">Título</h5>
+                                <p class="card-text" th:text="${midia.descricao}">Descrição</p>
+								<a th:href="@{'/remover/' + ${midia.id}}" class="btn btn-danger btn-sm"
+								   onclick="return confirm('Tem certeza que deseja remover esta mídia?');">Remover</a>
+								<a th:href="@{'/editar/' + ${midia.id}}" class="btn btn-warning btn-sm me-2">Editar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
